@@ -1,0 +1,68 @@
+.container {
+	width: 980px;
+	margin: 0 auto;
+}
+
+#dotGame {
+	width:100%;
+	height:0px;
+	padding-bottom:50%;
+	position:relative;
+}
+
+#dotGame .screen {
+	position: absolute;
+	width:100%;
+	height:100%;
+	visibility:hidden;
+	opacity:0;
+	transform:translateX(-10%);
+	transition:all 1s;
+}
+
+#dotGame #loadScreen {	
+	background:#000;
+}
+
+#dotGame .active {
+	display:block;
+	visibility: visible;
+	opacity:1;
+	transform:translateX(0%);
+}
+
+#dotGame #loadScreen {
+	color:#fff;
+}
+
+
+#dotGame #startScreen {
+	background:#ccc;
+}
+
+#dotGame #playScreen {
+	background: #0FF;
+}
+
+#dotGame button{
+	position:absolute;
+	bottom:2%;
+	left:45%;
+}
+
+#dotGame #playArea {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+#dotGame #playArea:hover {
+	cursor: none;
+}
+
+#hero {
+	position:absolute;
+	background-color:#F00;
+	border-radius:100%;
+}
+
