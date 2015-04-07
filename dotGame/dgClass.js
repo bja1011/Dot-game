@@ -20,12 +20,31 @@ DotGame.GameObject = (function(){
 	function Hero(name) {
 		this.startSize = 2;		
 		this.size = this.startSize;
+		this.element;
 		this.update = function() {
 			
+			var heroEl = window.heroEl;
 			window.heroEl.style.width = this.size+'%';
 			window.heroEl.style.height = this.size*window.gameAspectRatio+'%';
 			window.heroEl.style.left = mouse.x+'px';
 			window.heroEl.style.top = mouse.y+'px';
+			
+			if(heroEl.offsetLeft+heroEl.offsetWidth > $('#dotGame')[0].offsetWidth) {
+				heroEl.style.left=$('#dotGame')[0].offsetWidth-heroEl.offsetWidth+'px';
+				
+			}
+			if(heroEl.offsetLeft < 0) {
+				heroEl.style.left='0px';
+				
+			}
+			if(heroEl.offsetTop+heroEl.offsetHeight > $('#dotGame')[0].offsetHeight) {
+				heroEl.style.top=$('#dotGame')[0].offsetHeight-heroEl.offsetHeight+'px';
+				
+			}
+			if(heroEl.offsetTop+heroEl.offsetHeight < 0) {
+				heroEl.style.top='0px';
+				
+			}
 			
 		}
 		GameObject.call(this,name);
@@ -81,7 +100,7 @@ DotGame.GameObject = (function(){
 				DotGame.game.stop();
 			} else {				
 				$('#playArea')[0].removeChild(el);				
-				hero.size+=this.size/10;
+				hero.size+=this.size/20;
 				delete window.enemies[name];
 			}
 			
