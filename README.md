@@ -1,1 +1,2 @@
-Dot Game in JavaScript OOP.
+Dot Game in JavaScript OOP and HTML elements.
+
