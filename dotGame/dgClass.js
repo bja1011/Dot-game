@@ -54,14 +54,34 @@ DotGame.GameObject = (function(){
 			if(distance < (el.offsetWidth+heroEl.offsetWidth)/2) {
 				this.collision(el,this.name);
 			}
+			if(this.position.x<0) {
+				el.style.left = 0+'%';
+				this.direction.x=-this.direction.x;
+			}
+			if(this.position.x+this.size > 100) {
+				el.style.left = 100+'%';
+				this.direction.x=-this.direction.x;
+			}
+			
+			if(this.position.y<0) {
+				el.style.top = 0+'%';
+				this.direction.y=-this.direction.y;
+			}
+			if(this.position.y+this.size*window.gameAspectRatio > 100) {
+				el.style.top = 100+'%';
+				this.direction.y=-this.direction.y;
+			}
+			
+			//if(this.name=='enemy-0') c(this.position.x);
 		}
 		
 		Enemy.prototype.collision = function(el,name){
+			
 			if(enemies[name].size>hero.size) {
 				DotGame.game.stop();
 			} else {				
 				$('#playArea')[0].removeChild(el);				
-				hero.size+=0.3;
+				hero.size+=this.size/10;
 				delete window.enemies[name];
 			}
 			
@@ -76,7 +96,7 @@ DotGame.GameObject = (function(){
 		this.speed = Math.random()*0.2;
 		this.position = {
 				x:Math.random()*100,
-				y:Math.random()*100
+				y:Math.random()*50
 			}
 	}
 	Enemy.prototype = new GameObject();

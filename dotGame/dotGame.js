@@ -52,7 +52,7 @@ DotGame.game = (function(){
 	}
 	
 	var play = function(){
-		playScreen.show();
+		
 		updateInterval = setInterval(updateLoop,16);
 		$('#playArea')[0].innerHTML = '<div id="hero"></div>';
 		
@@ -66,7 +66,7 @@ DotGame.game = (function(){
 		hero.size = hero.startSize;
 				
 		heroEl = $('#hero')[0];
-				
+		playScreen.show();		
 	}
 	
 	
