@@ -1,14 +1,15 @@
 DotGame.game = (function(){
 	window.$ = DotGame.dom.$;
 	window.$$ = DotGame.dom;
+	
 	var updateInterval;
 	window.mouse = {x: 0, y: 0};
 	var settings = {
-			enemiesCount:10
+			enemiesCount:50
 		};
 	window.heroEl;
-	var enemies;
-	var hero;
+	window.enemies;
+	window.hero;
 	
 	
 	
@@ -37,18 +38,16 @@ DotGame.game = (function(){
 		
 		playScreen = new DotGame.Screen.loadingScreen('playScreen');
 		
+		window.gameAspectRatio = $('#dotGame')[0].offsetWidth/$('#dotGame')[0].offsetHeight;
+
+		
 				
-		enemies = new Array();
+		
 		hero = new DotGame.GameObject.hero('adam');
 		
-		for(var i=0;i<settings.enemiesCount;i++) enemies[i] = new DotGame.GameObject.enemy('enemy '+i);
 		
-		for(e in enemies) {
-			//c(enemies[e].update());
-		}
 		
-		//c(hero);
-		//c(enemies);
+		
 
 	}
 	
@@ -56,17 +55,25 @@ DotGame.game = (function(){
 		playScreen.show();
 		updateInterval = setInterval(updateLoop,16);
 		$('#playArea')[0].innerHTML = '<div id="hero"></div>';
+		
+		enemies = new Array();
+		for(var i=0;i<settings.enemiesCount;i++) enemies['enemy-'+i] = new DotGame.GameObject.enemy('enemy-'+i);
+		
+		for(e in enemies) {
+			$('#playArea')[0].innerHTML+= '<div id="'+enemies[e].name+'" class="enemy"></div>';
+		}
+		
+		hero.size = hero.startSize;
+				
 		heroEl = $('#hero')[0];
-		
-		c(hero);
-		
-		
+				
 	}
 	
 	
 	var stop = function(){
-		startScreen.show();
 		clearInterval(updateInterval);
+		enemies = null;
+		startScreen.show();
 		
 	}
 	
@@ -75,8 +82,10 @@ DotGame.game = (function(){
 		
 		hero.update();
 		for(e in enemies) {
-			//c(e);
+			enemies[e].update();
 		}
+		
+		
 		
 	}
 	
