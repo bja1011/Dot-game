@@ -186,6 +186,17 @@ DotGame.Screen = (function(){
 })();
 
 
+DotGame.GUI = (function(){
+	function GUI(name) {
+		this.name = name;
+	}
+	
+	function text(text) {
+		GUI.call(this,text);
+	}
+	
+})();
+
 
 
 

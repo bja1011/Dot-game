@@ -21,7 +21,9 @@ DotGame.game = (function(){
 	var init = function(){
 		
 		
-
+		window.addEventListener('resize',function(){
+			window.gameAspectRatio = $('#dotGame')[0].offsetWidth/$('#dotGame')[0].offsetHeight;
+		});
 		document.addEventListener('mousemove', function(e){ 
 			mouse.x = e.clientX || e.pageX; 
 			mouse.y = e.clientY || e.pageY 
@@ -53,7 +55,7 @@ DotGame.game = (function(){
 	
 	var play = function(){
 		
-		updateInterval = setInterval(updateLoop,16);
+		
 		$('#playArea')[0].innerHTML = '<div id="hero"></div>';
 		
 		enemies = new Array();
@@ -66,7 +68,8 @@ DotGame.game = (function(){
 		hero.size = hero.startSize;
 				
 		heroEl = $('#hero')[0];
-		playScreen.show();		
+		playScreen.show();	
+		updateInterval = setInterval(updateLoop,16);	
 	}
 	
 	
