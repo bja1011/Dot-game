@@ -12,8 +12,6 @@ DotGame.GameObject = (function(){
 			
 		},
 		
-		
-		
 	}
 		
 	
@@ -23,7 +21,16 @@ DotGame.GameObject = (function(){
 		this.element;
 		this.update = function() {
 			
-			var heroEl = window.heroEl;
+
+			ctx.beginPath();
+      ctx.arc(100, 100, 40, 0, 2 * Math.PI, false);
+      ctx.fillStyle = 'green';
+      ctx.fill();
+      ctx.font = "30px Arial";
+ctx.strokeText("Hello World",10,50);
+
+
+			/*var heroEl = window.heroEl;
 			window.heroEl.style.width = this.size+'%';
 			window.heroEl.style.height = this.size*window.gameAspectRatio+'%';
 			window.heroEl.style.left = mouse.x+'px';
@@ -42,17 +49,17 @@ DotGame.GameObject = (function(){
 				
 			}
 			if(heroEl.offsetTop+heroEl.offsetHeight < 0) {
-				heroEl.style.top='0px';
-				
-			}
-			
+				heroEl.style.top='0px';				
+			}	*/		
+
 		}
 		GameObject.call(this,name);
 	}
 	
 	function Enemy(name) {
 		this.update = function(){
-			var el = $('#'+name)[0];
+			return true;
+			/*var el = $('#'+name)[0];
 			el.style.width = this.size+'%';
 			el.style.height = this.size*window.gameAspectRatio+'%';
 			el.style.left = this.position.x+'%';
@@ -63,6 +70,8 @@ DotGame.GameObject = (function(){
 			
 			heroCenterX = heroEl.offsetLeft+heroEl.offsetWidth/2;
 			heroCenterY = heroEl.offsetTop+heroEl.offsetHeight/2;
+			*/
+
 			
 			elCenterX = el.offsetLeft+el.offsetWidth/2;
 			elCenterY = el.offsetTop+el.offsetHeight/2;
@@ -92,6 +101,26 @@ DotGame.GameObject = (function(){
 			}
 			
 			//if(this.name=='enemy-0') c(this.position.x);
+		}
+
+		this.draw = function(){
+			canvasWidth = ctx.width;
+			canvasHeight = ctx.height;
+
+			ctx.fillStyle = "#EEEEEE";
+		    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+		     
+		    // draw the circle
+		    ctx.beginPath();
+		     
+		    var radius = 175;
+		    ctx.arc(225, 225, radius, 0, Math.PI * 2, false);
+		    ctx.closePath();
+		     
+		    // color in the circle
+		    ctx.fillStyle = "#006699";
+		    ctx.fill();
+
 		}
 		
 		Enemy.prototype.collision = function(el,name){
@@ -184,8 +213,6 @@ DotGame.Screen = (function(){
 	}
 
 })();
-
-
 
 
 
